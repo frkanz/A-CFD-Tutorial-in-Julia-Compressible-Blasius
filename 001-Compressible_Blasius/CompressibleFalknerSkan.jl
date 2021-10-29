@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.15.1
+# v0.17.0
 
 using Markdown
 using InteractiveUtils
@@ -10,6 +10,7 @@ begin
 	using Printf
 	using CSV
 	using DataFrames
+	using LinearAlgebra
 end
 
 # ╔═╡ 369b8ad0-387f-4509-afe3-03e5bf79ddb8
@@ -17,19 +18,19 @@ md"_Compressible Similarity, version 1_"
 
 # ╔═╡ 90714396-cbc5-4c42-8853-4da1c83674fd
 md"""
-## **Compressible Falkner-Skan** 
+## **Compressible Blasius** 
 
 #### **Description:**
 
-This notebook computes the compressible version of Falkner-Skan Similarity Solution coupled with energy equation
+This notebook computes the compressible version of Blasius Similarity Solution coupled with the energy equation
 
-		selfsimilar(M∞, T∞, ηmax, N, itermax, ϵProfile, ϵBC)
+		selfsimilar(M∞, T∞, Tw, ηmax, N, ϵ)
 
 If the arguments are missing, it will use the default values.
     
-		selfsimilar(M∞=1, T∞=300, ηmax=10, N=50, itermax=40, ϵProfile=1e-6, ϵBC=1e-6)
+		selfsimilar(M∞=1.0, T∞=300, Tw=2.0, ηmax=10, N=100, ϵ=1e-9)
 
-#### **Compressible Falkner-Skan Equation**
+#### **Compressible Blasius Equation**
 Boundary-layer velocity and temperature profiles on the flat plate can be projected onto single profile wich is self-similar profile. It can be represented using the ordinary differential equations (ODEs) below:
 
 $$(cf'')'+ff'' =0$$
@@ -51,18 +52,16 @@ $$\sigma=\frac{\mu c_p}{k}$$
     
 In this code, σ is assumed as 0.72. The viscosity μ is a function of T and it is calculated as
 
-\begin{equation}
-    μ = c₁\frac{T^{3/2}}{T+c₂}    
-\end{equation}
+$$μ = c₁\frac{T^{3/2}}{(T+c₂)}$$
 
 c₂ is 110.4 Kelvin. c₁ is disappearing on the nondimensionalizing process. The boundary conditions for the system of ODEs are
     
 $$y=0;  f=f'=0$$
 $$y\rightarrow \infty;  f',g \rightarrow 0$$
 
-The resultant equations along with the boundary conditions are solved with the Runge-Kutta Fehlberg scheme with Newton's iteration method for missing boundary condition.
+The resultant equations along with the boundary conditions are solved with the Runge-Kutta scheme with Newton's iteration method for the missing boundary condition.
 
-Details of RK Fehlberg:
+Details of RK:
 Numerical Recipes, Cambridge
 
 Details of Similarity solution formulation:
@@ -71,9 +70,9 @@ Boundary-Layer Theory, 7ᵗʰ edition, Schlichting
 Feel free to ask questions!
 
 *Furkan Oz*
-*Kursat Kara*
-
 [foz@okstate.edu](foz@okstate.edu)
+
+*Kursat Kara*
 [kursat.kara@okstate.edu](kursat.kara@okstate.edu)
 
 """
@@ -145,21 +144,21 @@ end
 Computes the compressible Similarity Solution
 This notebook computes the compressible Similarity Solution
 
-		selfsimilar(M∞, T∞, ηmax, N, itermax, ϵProfile, ϵBC)
+		selfsimilar(M∞, T∞, Tw, ηmax, N, ϵ)
 
 If the arguments are missing, it will use the default values.
     
-		selfsimilar(M∞=1, T∞=300, ηmax=10, N=50, itermax=40, ϵProfile=1e-6, ϵBC=1e-6)
+		selfsimilar(M∞=1.0, T∞=300, Tw=2.0, ηmax=10, N=100, ϵ=1e-9)
 
 Furkan Oz,
 foz@okstate.edu, 
     
 """
-function selfsimilar(M∞=2.8, T∞=121.10591599, Tw=2.32599, ηmax=10, N=800, ϵ=1e-9)
+function selfsimilar(M∞=1.0, T∞=300, Tw=2.0, ηmax=10, N=100, ϵ=1e-9)
     Δη = ηmax/N
     γ  = 1.4   # Ratio of specific heat
     cμ = 110.4 # Sutherland law coefficient for [Kelvin]
-    Pr = 0.70  # Prandtl Number
+    Pr = 0.72  # Prandtl Number
 	adi = 1
 
     Δ = 1e-10     # Small number for shooting method (Decrease when ϵ is decreased)
@@ -304,10 +303,10 @@ end
 # ╔═╡ 724e9305-48a8-41ef-88c1-f7f4f2b6e346
 begin
 	plot([Utest,Ttest],ηtest,
-	        title = "Compressible Falkner-Skan Profiles",
+	        title = "Compressible Blasius Profiles",
 	        label = ["U" "T"],
 	        legend = :topleft,
-	        xlabel = "U/T",
+	        xlabel = "U,T",
 	        ylabel = "\\eta",
 	        linewidth = 2,
 	        linecolor = :black,
@@ -321,6 +320,7 @@ PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
 CSV = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
 Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
 
