@@ -15,7 +15,7 @@ Julia setup files can be downloaded from their website (https://julialang.org/do
 Boundary-layer velocity and temperature profiles on the flat plate can be projected onto single profile wich is self-similar profile. It can be represented using the ordinary differential equations (ODEs) below:
 
 \begin{equation}
-- <img src="https://latex.codecogs.com/gif.latex?O_t=\text { Onset event at time bin } t " /> 
+https://latex.codecogs.com/gif.latex?c%3Dc&plus;1
 <img src="https://latex.codecogs.com/gif.latex?(cf'')'+ff'' =0" />
 (cf'')'+ff'' =0
 \end{equation}
