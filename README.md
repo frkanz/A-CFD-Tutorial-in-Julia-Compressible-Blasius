@@ -44,7 +44,7 @@ c₂ is 110.4 Kelvin. c₁ is disappearing on the nondimensionalizing process. T
     
 <a href="https://www.codecogs.com/eqnedit.php?latex=y=0;\hspace{12pt}f=f'=0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y=0;\hspace{12pt}f=f'=0" title="y=0;\hspace{12pt}f=f'=0" /></a>
 
-y\rightarrow \infty;\hspace{12pt}f',g \rightarrow 0
+<a href="https://www.codecogs.com/eqnedit.php?latex=y\rightarrow&space;\infty;\hspace{12pt}f',g&space;\rightarrow&space;0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y\rightarrow&space;\infty;\hspace{12pt}f',g&space;\rightarrow&space;0" title="y\rightarrow \infty;\hspace{12pt}f',g \rightarrow 0" /></a>
 
 The resultant equations along with the boundary conditions are solved with the Runge-Kutta scheme with Newton's iteration method for the missing boundary condition.
 
