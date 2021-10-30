@@ -14,6 +14,7 @@ Julia setup files can be downloaded from their website (https://julialang.org/do
 ## **Compressible Blasius Equations**
 Boundary-layer velocity and temperature profiles on the flat plate can be projected onto single profile wich is self-similar profile. It can be represented using the ordinary differential equations (ODEs) below:
 
+<a href="https://www.codecogs.com/eqnedit.php?latex=(cf'')'&plus;ff''&space;=0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(cf'')'&plus;ff''&space;=0" title="(cf'')'+ff'' =0" /></a>
 (cf'')'+ff'' =0
 
 (a_1g'+a_2f'f'')'+fg'=0
