@@ -12,35 +12,39 @@ A boundary-layer is a thin fluid layer near a solid surface, and viscous effects
 Julia setup files can be downloaded from their website (https://julialang.org/downloads/). The website also includes instructions on how to install Julia on Windows, Linux, and mac operating systems. It is common to use external packages for Julia. In order to do that, Pkg, which is Julia's built-in package manager, can be used. Once Julia is opened, Pkg can be activated with the "]" button in Windows. In Linux, calling "julia" in the terminal will open it. After that "Pkg.add("Pluto")" will trigger the setup process for that package. In here, we used Pluto as an example because, in GitHub, our codes are developed in the Pluto environment. After Pluto is installed. Pluto can be run with "Pluto.run()". This command will open a new tab in the browser which you can run your Julia codes. After that, the "using Pluto" line must be placed to the top of the file. For "Plots" package, the commands will be "Pkg.add("Plots")" and "using Plots". Since the Plots package does not have a GUI, there is not a command called "Plots.run()".
 
 ## **Compressible Blasius Equations**
-Boundary-layer velocity and temperature profiles on the flat plate can be projected onto single profile wich is self-similar profile. It can be represented using the ordinary differential equations (ODEs) below:
+Boundary-layer velocity and temperature profiles on the flat plate can be projected onto single profile wich is self-similar profile. It can be represented using the ordinary differential equations (ODEs) below (Equations are not visible in dark theme. Please check the equations from the main solver or from the paper if necessary.):
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=(cf'')'&plus;ff''&space;=0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(cf'')'&plus;ff''&space;=0" title="(cf'')'+ff'' =0" /></a>
-(cf'')'+ff'' =0
 
-(a_1g'+a_2f'f'')'+fg'=0
+<a href="https://www.codecogs.com/eqnedit.php?latex=(a_1g'&plus;a_2f'f'')'&plus;fg'=0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(a_1g'&plus;a_2f'f'')'&plus;fg'=0" title="(a_1g'+a_2f'f'')'+fg'=0" /></a>
     
 where 
 
-$f'=\frac{u}{u_e}$
-$$c=\frac{\rho \mu}{\rho_e \mu_e}$$
-$$g=\frac{H}{H_e}$$ 
-$$a_1=\frac{c}{\sigma}$$
-$$a_2=\frac{(\gamma-1)M^2}{1+(\frac{\gamma-1}{2})M^2}\left(1-\frac{1}{\sigma}\right)c$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=f'=\frac{u}{u_e}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?f'=\frac{u}{u_e}" title="f'=\frac{u}{u_e}" /></a>
 
+<a href="https://www.codecogs.com/eqnedit.php?latex=c=\frac{\rho&space;\mu}{\rho_e&space;\mu_e}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?c=\frac{\rho&space;\mu}{\rho_e&space;\mu_e}" title="c=\frac{\rho \mu}{\rho_e \mu_e}" /></a>
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=g=\frac{H}{H_e}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?g=\frac{H}{H_e}" title="g=\frac{H}{H_e}" /></a>
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=a_1=\frac{c}{\sigma}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?a_1=\frac{c}{\sigma}" title="a_1=\frac{c}{\sigma}" /></a>
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=a_2=\frac{(\gamma-1)M^2}{1&plus;(\frac{\gamma-1}{2})M^2}\left(1-\frac{1}{\sigma}\right)c" target="_blank"><img src="https://latex.codecogs.com/gif.latex?a_2=\frac{(\gamma-1)M^2}{1&plus;(\frac{\gamma-1}{2})M^2}\left(1-\frac{1}{\sigma}\right)c" title="a_2=\frac{(\gamma-1)M^2}{1+(\frac{\gamma-1}{2})M^2}\left(1-\frac{1}{\sigma}\right)c" /></a>
 
 and H is the enthalpy, γ is the ratio of specific heats, M is the edge Mach number, and σ is the Prandtl number. σ and M can be defined as
 
-$$M=\frac{u_e}{\sqrt{\gamma \mathfrak{R}T_e}}$$
-$$\sigma=\frac{\mu c_p}{k}$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=M=\frac{u_e}{\sqrt{\gamma&space;\mathfrak{R}T_e}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?M=\frac{u_e}{\sqrt{\gamma&space;\mathfrak{R}T_e}}" title="M=\frac{u_e}{\sqrt{\gamma \mathfrak{R}T_e}}" /></a>
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\sigma=\frac{\mu&space;c_p}{k}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\sigma=\frac{\mu&space;c_p}{k}" title="\sigma=\frac{\mu c_p}{k}" /></a>
     
 In this code, σ is assumed as 0.72. The viscosity μ is a function of T and it is calculated as
 
-$$μ = c₁\frac{T^{3/2}}{(T+c₂)}$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=\mu&space;=&space;c_1\frac{T^{3/2}}{(T&plus;c_2)}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\mu&space;=&space;c_1\frac{T^{3/2}}{(T&plus;c_2)}" title="\mu = c_1\frac{T^{3/2}}{(T+c_2)}" /></a>
 
 c₂ is 110.4 Kelvin. c₁ is disappearing on the nondimensionalizing process. The boundary conditions for the system of ODEs are
     
-$$y=0;  f=f'=0$$
-$$y\rightarrow \infty;  f',g \rightarrow 0$$
+<a href="https://www.codecogs.com/eqnedit.php?latex=y=0;\hspace{12pt}f=f'=0" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y=0;\hspace{12pt}f=f'=0" title="y=0;\hspace{12pt}f=f'=0" /></a>
+
+y\rightarrow \infty;\hspace{12pt}f',g \rightarrow 0
 
 The resultant equations along with the boundary conditions are solved with the Runge-Kutta scheme with Newton's iteration method for the missing boundary condition.
 
