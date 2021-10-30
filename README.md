@@ -45,6 +45,7 @@ The resultant equations along with the boundary conditions are solved with the R
 The solution vector is ploted and compared with results from Schlichting's Boundary-layer theory book.
 
 <img src="./001-Compressible_Blasius/M-4_5-T-61-Vel.png" width="50%" height="50%">
+<img src="./001-Compressible_Blasius/M-4_5-T-61-Temp.png" width="50%" height="50%">
 
 Details of RK:
 Numerical Recipes, Cambridge
