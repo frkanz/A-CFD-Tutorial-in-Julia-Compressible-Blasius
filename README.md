@@ -20,7 +20,7 @@ Boundary-layer velocity and temperature profiles on the flat plate can be projec
     
 where 
 
-$$f'=\frac{u}{u_e}$$
+$f'=\frac{u}{u_e}$
 $$c=\frac{\rho \mu}{\rho_e \mu_e}$$
 $$g=\frac{H}{H_e}$$ 
 $$a_1=\frac{c}{\sigma}$$
