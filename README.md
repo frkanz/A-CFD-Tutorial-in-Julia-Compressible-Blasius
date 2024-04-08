@@ -5,7 +5,7 @@ A CFD Tutorial in Julia: Introduction to Compressible Laminar Boundary-Layer The
 A boundary-layer is a thin fluid layer near a solid surface, and viscous effects dominate it. The laminar boundary-layer calculations appear in many aerodynamics problems including, skin friction drag, flow separation, and aerodynamic heating. A student must understand the flow physics and the numerical implementation to conduct successful simulations in advanced undergraduate- and graduate-level fluid dynamics/aerodynamics courses. Numerical simulations require writing computer codes. Therefore, choosing a fast and user-friendly programming language is essential to reduce code development and simulation times. Julia is a new programming language that combines performance and productivity. The present study derived the compressible Blasius equations from Navier-Stokes' equations and numerically solved the resulting equations using the Julia programming language. The fourth-order Runge-Kutta method is used for the numerical discretization, and Newton's iteration method is employed to calculate the missing boundary condition. In addition, Burgers', heat, and compressible Blasius equations are solved both in Julia and MATLAB. The runtime comparison showed that Julia with $for$ loops is 2.8 to 50 times faster than MATLAB in 4 out of 5 cases. We also released the Julia codes on our GitHub page to shorten the learning curve for interested readers.
 
 
-#### **Oz, F.; Kara, K. A CFD Tutorial in Julia: Introduction to Compressible Laminar Boundary-Layer Theory. Fluids, 2021, **_Under review_**.**
+#### **Oz, F.; Kara, K. A CFD Tutorial in Julia: Introduction to Compressible Laminar Boundary-Layer Theory. Fluids, 6.11, 2021: 400..
 
 #### **Instructions**
 
